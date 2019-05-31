@@ -1,0 +1,261 @@
+['Scentless Mayweed', 'Shepherds Purse', 'Fat Hen', 'Charlock', 'Black-grass', 'Maize', 'Cleavers', 'Sugar beet', 'Small-flowered Cranesbill', 'Common Chickweed', 'Loose Silky-bent', 'Common wheat']
+Using TensorFlow backend.
+('Training data shape: ', (4750, 128, 128, 3))
+('Training labels shape: ', (4750, 12))
+2019-05-31 07:27:50.240605: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-05-31 07:27:50.348616: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-05-31 07:27:50.348965: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1356] Found device 0 with properties: 
+name: GeForce GTX 1050 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.62
+pciBusID: 0000:01:00.0
+totalMemory: 3.94GiB freeMemory: 3.60GiB
+2019-05-31 07:27:50.348980: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1435] Adding visible gpu devices: 0
+2019-05-31 07:27:50.485220: I tensorflow/core/common_runtime/gpu/gpu_device.cc:923] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-05-31 07:27:50.485263: I tensorflow/core/common_runtime/gpu/gpu_device.cc:929]      0 
+2019-05-31 07:27:50.485269: I tensorflow/core/common_runtime/gpu/gpu_device.cc:942] 0:   N 
+2019-05-31 07:27:50.485403: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3333 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:01:00.0, compute capability: 6.1)
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, 128, 128, 3)       0         
+_________________________________________________________________
+block1_conv1 (Conv2D)        (None, 128, 128, 64)      1792      
+_________________________________________________________________
+block1_conv2 (Conv2D)        (None, 128, 128, 64)      36928     
+_________________________________________________________________
+block1_pool (MaxPooling2D)   (None, 64, 64, 64)        0         
+_________________________________________________________________
+block2_conv1 (Conv2D)        (None, 64, 64, 128)       73856     
+_________________________________________________________________
+block2_conv2 (Conv2D)        (None, 64, 64, 128)       147584    
+_________________________________________________________________
+block2_pool (MaxPooling2D)   (None, 32, 32, 128)       0         
+_________________________________________________________________
+block3_conv1 (Conv2D)        (None, 32, 32, 256)       295168    
+_________________________________________________________________
+block3_conv2 (Conv2D)        (None, 32, 32, 256)       590080    
+_________________________________________________________________
+block3_conv3 (Conv2D)        (None, 32, 32, 256)       590080    
+_________________________________________________________________
+block3_pool (MaxPooling2D)   (None, 16, 16, 256)       0         
+_________________________________________________________________
+block4_conv1 (Conv2D)        (None, 16, 16, 512)       1180160   
+_________________________________________________________________
+block4_conv2 (Conv2D)        (None, 16, 16, 512)       2359808   
+_________________________________________________________________
+block4_conv3 (Conv2D)        (None, 16, 16, 512)       2359808   
+_________________________________________________________________
+block4_pool (MaxPooling2D)   (None, 8, 8, 512)         0         
+_________________________________________________________________
+block5_conv1 (Conv2D)        (None, 8, 8, 512)         2359808   
+_________________________________________________________________
+block5_conv2 (Conv2D)        (None, 8, 8, 512)         2359808   
+_________________________________________________________________
+block5_conv3 (Conv2D)        (None, 8, 8, 512)         2359808   
+_________________________________________________________________
+block5_pool (MaxPooling2D)   (None, 4, 4, 512)         0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 2, 2, 256)         524544    
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 2, 2, 256)         1024      
+_________________________________________________________________
+activation_1 (Activation)    (None, 2, 2, 256)         0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 1, 1, 128)         131200    
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 1, 1, 128)         512       
+_________________________________________________________________
+activation_2 (Activation)    (None, 1, 1, 128)         0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 128)               0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 12)                1548      
+=================================================================
+Total params: 15,373,516
+Trainable params: 7,737,484
+Non-trainable params: 7,636,032
+_________________________________________________________________
+Train on 4275 samples, validate on 475 samples
+Epoch 1/80
+2019-05-31 07:27:56.732015: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.25GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2019-05-31 07:27:57.411958: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.25GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2019-05-31 07:27:58.095413: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.10GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+4224/4275 [============================>.] - ETA: 0s - loss: 1.3687 - acc: 0.5478 - fscore: 0.44682019-05-31 07:28:14.025192: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.62GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2019-05-31 07:28:14.430967: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.84GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2019-05-31 07:28:16.722900: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.87GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2019-05-31 07:28:16.965908: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.20GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2019-05-31 07:28:17.658260: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.48GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+4275/4275 [==============================] - 27s 6ms/step - loss: 1.3606 - acc: 0.5497 - fscore: 0.4500 - val_loss: 1.4251 - val_acc: 0.5326 - val_fscore: 0.4986
+Epoch 2/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.5342 - acc: 0.8309 - fscore: 0.8133 - val_loss: 1.0990 - val_acc: 0.6526 - val_fscore: 0.6510
+Epoch 3/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.3089 - acc: 0.9081 - fscore: 0.9031 - val_loss: 0.4665 - val_acc: 0.8211 - val_fscore: 0.8280
+Epoch 4/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.1970 - acc: 0.9453 - fscore: 0.9425 - val_loss: 0.5607 - val_acc: 0.8211 - val_fscore: 0.8165
+Epoch 5/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.1363 - acc: 0.9612 - fscore: 0.9598 - val_loss: 0.4520 - val_acc: 0.8589 - val_fscore: 0.8577
+Epoch 6/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.1048 - acc: 0.9712 - fscore: 0.9721 - val_loss: 0.2874 - val_acc: 0.9032 - val_fscore: 0.9001
+Epoch 7/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0644 - acc: 0.9820 - fscore: 0.9819 - val_loss: 0.6465 - val_acc: 0.8000 - val_fscore: 0.8084
+Epoch 8/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0412 - acc: 0.9918 - fscore: 0.9924 - val_loss: 0.4716 - val_acc: 0.8421 - val_fscore: 0.8502
+Epoch 9/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0188 - acc: 0.9970 - fscore: 0.9968 - val_loss: 0.3209 - val_acc: 0.8968 - val_fscore: 0.9018
+Epoch 10/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0373 - acc: 0.9918 - fscore: 0.9920 - val_loss: 0.4180 - val_acc: 0.8800 - val_fscore: 0.8808
+Epoch 11/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0381 - acc: 0.9918 - fscore: 0.9913 - val_loss: 0.2961 - val_acc: 0.9095 - val_fscore: 0.9098
+Epoch 12/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0368 - acc: 0.9911 - fscore: 0.9912 - val_loss: 0.2995 - val_acc: 0.9221 - val_fscore: 0.9224
+Epoch 13/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0457 - acc: 0.9864 - fscore: 0.9863 - val_loss: 0.9128 - val_acc: 0.7179 - val_fscore: 0.7213
+Epoch 14/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0365 - acc: 0.9911 - fscore: 0.9906 - val_loss: 0.3309 - val_acc: 0.8968 - val_fscore: 0.9010
+Epoch 15/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0343 - acc: 0.9892 - fscore: 0.9893 - val_loss: 0.3401 - val_acc: 0.8821 - val_fscore: 0.8860
+Epoch 16/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0180 - acc: 0.9960 - fscore: 0.9958 - val_loss: 0.3956 - val_acc: 0.8842 - val_fscore: 0.8816
+Epoch 17/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0036 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.2166 - val_acc: 0.9432 - val_fscore: 0.9419
+Epoch 18/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0016 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.2124 - val_acc: 0.9453 - val_fscore: 0.9439
+Epoch 19/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 0.0015 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.2178 - val_acc: 0.9453 - val_fscore: 0.9429
+Epoch 20/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 9.6964e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.2185 - val_acc: 0.9411 - val_fscore: 0.9416
+Epoch 21/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 7.6527e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.2003 - val_acc: 0.9537 - val_fscore: 0.9533
+Epoch 22/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 6.5603e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1938 - val_acc: 0.9579 - val_fscore: 0.9566
+Epoch 23/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 6.4529e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1899 - val_acc: 0.9600 - val_fscore: 0.9577
+Epoch 24/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 5.7798e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1870 - val_acc: 0.9579 - val_fscore: 0.9588
+Epoch 25/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 5.2486e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1896 - val_acc: 0.9600 - val_fscore: 0.9598
+Epoch 26/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 4.8439e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1888 - val_acc: 0.9600 - val_fscore: 0.9610
+Epoch 27/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 4.8771e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1900 - val_acc: 0.9600 - val_fscore: 0.9577
+Epoch 28/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 3.9638e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1874 - val_acc: 0.9600 - val_fscore: 0.9588
+Epoch 29/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 3.7428e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1866 - val_acc: 0.9600 - val_fscore: 0.9599
+Epoch 30/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 3.6847e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1874 - val_acc: 0.9600 - val_fscore: 0.9588
+Epoch 31/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 3.5591e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1853 - val_acc: 0.9600 - val_fscore: 0.9587
+Epoch 32/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 3.7181e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1869 - val_acc: 0.9579 - val_fscore: 0.9588
+Epoch 33/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 3.1512e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1882 - val_acc: 0.9579 - val_fscore: 0.9578
+Epoch 34/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.9643e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1888 - val_acc: 0.9579 - val_fscore: 0.9578
+Epoch 35/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 3.2149e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1914 - val_acc: 0.9579 - val_fscore: 0.9557
+Epoch 36/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.8988e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1881 - val_acc: 0.9600 - val_fscore: 0.9620
+Epoch 37/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.6837e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1893 - val_acc: 0.9600 - val_fscore: 0.9599
+Epoch 38/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.5380e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1882 - val_acc: 0.9579 - val_fscore: 0.9609
+Epoch 39/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.3859e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1878 - val_acc: 0.9600 - val_fscore: 0.9609
+Epoch 40/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.3477e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1878 - val_acc: 0.9600 - val_fscore: 0.9609
+Epoch 41/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.4479e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1871 - val_acc: 0.9579 - val_fscore: 0.9609
+Epoch 42/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.1413e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1839 - val_acc: 0.9558 - val_fscore: 0.9557
+Epoch 43/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.0896e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1868 - val_acc: 0.9600 - val_fscore: 0.9588
+Epoch 44/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 2.0943e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1855 - val_acc: 0.9600 - val_fscore: 0.9588
+Epoch 45/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.8748e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1856 - val_acc: 0.9600 - val_fscore: 0.9588
+Epoch 46/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.6580e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1879 - val_acc: 0.9579 - val_fscore: 0.9588
+Epoch 47/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.7296e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1877 - val_acc: 0.9579 - val_fscore: 0.9588
+Epoch 48/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.6699e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1877 - val_acc: 0.9600 - val_fscore: 0.9588
+Epoch 49/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.5927e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1889 - val_acc: 0.9600 - val_fscore: 0.9588
+Epoch 50/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.5548e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1889 - val_acc: 0.9600 - val_fscore: 0.9588
+Epoch 51/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.5904e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1862 - val_acc: 0.9600 - val_fscore: 0.9620
+Epoch 52/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.6485e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1870 - val_acc: 0.9621 - val_fscore: 0.9620
+Epoch 53/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.4476e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1825 - val_acc: 0.9621 - val_fscore: 0.9641
+Epoch 54/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.3872e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1885 - val_acc: 0.9621 - val_fscore: 0.9620
+Epoch 55/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.3559e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1878 - val_acc: 0.9621 - val_fscore: 0.9642
+Epoch 56/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.3148e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1894 - val_acc: 0.9621 - val_fscore: 0.9631
+Epoch 57/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.2306e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1869 - val_acc: 0.9600 - val_fscore: 0.9620
+Epoch 58/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.3607e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1897 - val_acc: 0.9621 - val_fscore: 0.9631
+Epoch 59/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.2289e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1884 - val_acc: 0.9600 - val_fscore: 0.9621
+Epoch 60/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.1043e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1915 - val_acc: 0.9642 - val_fscore: 0.9641
+Epoch 61/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.0479e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1926 - val_acc: 0.9600 - val_fscore: 0.9630
+Epoch 62/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.0466e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1905 - val_acc: 0.9621 - val_fscore: 0.9631
+Epoch 63/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.0587e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1912 - val_acc: 0.9621 - val_fscore: 0.9641
+Epoch 64/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.0293e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1903 - val_acc: 0.9642 - val_fscore: 0.9630
+Epoch 65/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.0984e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1916 - val_acc: 0.9621 - val_fscore: 0.9630
+Epoch 66/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 1.0112e-04 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1913 - val_acc: 0.9600 - val_fscore: 0.9630
+Epoch 67/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 9.6663e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1904 - val_acc: 0.9600 - val_fscore: 0.9620
+Epoch 68/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 8.8849e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1916 - val_acc: 0.9621 - val_fscore: 0.9631
+Epoch 69/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 8.2957e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1912 - val_acc: 0.9621 - val_fscore: 0.9620
+Epoch 70/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 8.9869e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1913 - val_acc: 0.9621 - val_fscore: 0.9630
+Epoch 71/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 8.3300e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1910 - val_acc: 0.9621 - val_fscore: 0.9630
+Epoch 72/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 8.4473e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1898 - val_acc: 0.9621 - val_fscore: 0.9609
+Epoch 73/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 7.7485e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1905 - val_acc: 0.9621 - val_fscore: 0.9641
+Epoch 74/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 7.6587e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1899 - val_acc: 0.9621 - val_fscore: 0.9630
+Epoch 75/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 7.4300e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1904 - val_acc: 0.9621 - val_fscore: 0.9641
+Epoch 76/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 7.0897e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1908 - val_acc: 0.9621 - val_fscore: 0.9642
+Epoch 77/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 6.9437e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1908 - val_acc: 0.9600 - val_fscore: 0.9599
+Epoch 78/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 7.1358e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1902 - val_acc: 0.9621 - val_fscore: 0.9620
+Epoch 79/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 7.3262e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1907 - val_acc: 0.9600 - val_fscore: 0.9620
+Epoch 80/80
+4275/4275 [==============================] - 17s 4ms/step - loss: 6.6567e-05 - acc: 1.0000 - fscore: 1.0000 - val_loss: 0.1905 - val_acc: 0.9621 - val_fscore: 0.9631
+2019-05-31 07:50:27.429369: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.02GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2019-05-31 07:50:31.129375: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.84GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+Test CSV saved
+[[72  0  0  0  1  0  0  0  0  0  2  0]
+ [ 0 27  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0 32  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0 55  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0 66  0  0  1  0  0  0  0]
+ [ 1  0  0  0  0 16  0  0  0  0  2  0]
+ [ 0  0  1  0  0  0 22  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0 23  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0 57  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0 52  0  0]
+ [ 9  0  0  0  0  0  0  0  0  0 10  0]
+ [ 0  0  0  0  0  0  0  0  1  0  0 25]]
+
